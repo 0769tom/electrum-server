@@ -26,6 +26,7 @@ import threading
 import time
 import hashlib
 import struct
+import scrypt
 
 __b58chars = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz'
 __b58base = len(__b58chars)
@@ -41,6 +42,7 @@ def rev_hex(s):
 
 Hash = lambda x: hashlib.sha256(hashlib.sha256(x).digest()).digest()
 
+HashScrypt = lambda x: scrypt.hash(x, x, 1024, 1, 1, 32)
 
 hash_encode = lambda x: x[::-1].encode('hex')
 
